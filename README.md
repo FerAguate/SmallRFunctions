@@ -1,13 +1,13 @@
 ## List of small functions
-### fersource
+### - fersource
 #### Description
-Source functions from my repositories.
+Source functions from any of my repositories.
 #### Usage
 fersource(myfunction)
 #### Arguments
 myfunction = a vector with functions names.
 
-### create_color_vector
+### - create_color_vector
 #### Description
 Creates a vector of colors matching each category of the imput vector.
 #### Usage
