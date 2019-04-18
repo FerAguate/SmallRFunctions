@@ -3,13 +3,8 @@
 #### Description
 Source functions from any of my repositories.
 Copy and run this at the begining of your code:<br />
-pre {
-font-size = 8
-}
 
-<pre > 
-eval(parse(text = RCurl::getURL('https://raw.githubusercontent.com/FerAguate/SmallRFunctions/master/fersource.R', ssl.verifypeer = FALSE)))
-<pre />
+###### eval(parse(text = RCurl::getURL('https://raw.githubusercontent.com/FerAguate/SmallRFunctions/master/fersource.R', ssl.verifypeer = FALSE)))
 
 #### Usage
 fersource(myfunction)
