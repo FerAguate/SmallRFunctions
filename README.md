@@ -2,10 +2,8 @@
 ### - fersource
 #### Description
 Source functions from any of my repositories.
-Copy and run this at the begining of your code:
-```R
+Copy and run this at the begining of your code:<br />
 eval(parse(text = RCurl::getURL('https://raw.githubusercontent.com/FerAguate/SmallRFunctions/master/fersource.R', ssl.verifypeer = FALSE)))
-```
 #### Usage
 fersource(myfunction)
 #### Arguments
