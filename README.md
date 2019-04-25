@@ -9,7 +9,7 @@ Copy and run this at the begining of your code:<br />
 #### Usage
 fersource(myfunction)
 #### Arguments
-myfunction = character or string of characters with function names.
+myfunction = character or string of characters with function names. If myfunction == 'all', all functions will be sourced.
 
 ### - create_color_vector
 #### Description
