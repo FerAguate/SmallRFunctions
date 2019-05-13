@@ -26,3 +26,12 @@ Function useful when adding colors by category in the base function 'plot'.
 x <- rnorm(1000)
 plot(x, col = create_color_vector(x > 0))
 ```
+
+### - load_get
+#### Description
+Load one object from a RData file.
+#### Usage
+load_get(f, ...)
+#### Arguments
+f = a connection or a character string giving the name of the file to load.<br />
+index = integer indicating the position of the object to load. By default = 1 (reference to the first object in the RData file).
