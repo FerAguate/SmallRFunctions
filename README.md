@@ -16,12 +16,10 @@ myfunction = character or string of characters with function names. If myfunctio
 
 ### List of functions:
 
-create_color_vector
-
-load_from_rdata
-
-mybiplot
-
-grow_tree
-
-add_legend
+```r
+create_color_vector()
+load_from_rdata()
+mybiplot()
+grow_tree()
+add_legend()
+```
