@@ -1,12 +1,3 @@
-add_legend_bottom_right <- function(legylim, legxlim,
-                                    leglab = c('Symbol:', 'min', 'mean', 'max', 'other'), 
-                                    legtyp = c('t', 's', 'l', 's', 'l'), 
-                                    legpch = c(NA, 3, 1, 4, 2), 
-                                    legcol = c(1, 1, 1, 1, 6), 
-                                    legpos = c(.7, .85), 
-                                    leg_xali = 1.11, 
-                                    legcex = 1, 
-                                    legxline = 8){
   # legylim: y limits
   # legxlim: x limits
   # leglab: labels
@@ -17,6 +8,17 @@ add_legend_bottom_right <- function(legylim, legxlim,
   # leg_xali: left indentation
   # legcex: legend size
   # legxline: x axis line length
+
+add_legend_bottom_right <- function(legylim, legxlim,
+                                    leglab = c('Symbol:', 'min', 'mean', 'max', 'other'), 
+                                    legtyp = c('t', 's', 'l', 's', 'l'), 
+                                    legpch = c(NA, 3, 1, 4, 2), 
+                                    legcol = c(1, 1, 1, 1, 6), 
+                                    legpos = c(.7, .85), 
+                                    leg_xali = 1.11, 
+                                    legcex = 1, 
+                                    legxline = 8){
+
   leglow <- (legylim[2] - legylim[1]) * legpos[2] + legylim[1]
   legran <- seq(legylim[2], leglow, length.out = length(leglab))
   legxran <- seq(legxlim[1], legxlim[2], length.out = as.numeric(legxlim[2] - legxlim[1]))
