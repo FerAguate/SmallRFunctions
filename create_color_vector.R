@@ -7,10 +7,7 @@
 #' @example x <- rnorm(1000)
 #' @example plot(x, col = create_color_vector(x > 0))
 #' @author Fernando Aguate
-# This text is just to check
 create_color_vector <- function(vector, colors = c('#1B9E77', '#D95F02')){
-  # text to check
-  x = 1
   if(length(colors) < length(unique(vector))) colors <- rainbow(length(unique(vector)), s = .9)
   as.character(factor(vector, levels = unique(vector), labels = colors))  
 }
