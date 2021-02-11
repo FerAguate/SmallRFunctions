@@ -1,14 +1,10 @@
-#' @title create_color_vector
-#' @description Creates a vector of colors matching each category of the imput vector.
-#' @usage create_color_vector(vector, ...)
-#' @arguments vector = a vector of numbers or characters with more than one category.
-#' @arguments colors = colors for each category in increasing order.
-#' @details Function useful when adding colors by category in the base function 'plot'.
-#' @example x <- rnorm(1000)
-#' @example plot(x, col = create_color_vector(x > 0))
-#' @author Fernando Aguate
+#' @title load_from_rdata
+#' @description Loads one object from a RData file.
+#' @usage load_get(f, ...)
+#' @arguments f = a connection or a character string giving the name of the file to load.
+#' @arguments index = integer indicating the position of the object to load. By default = 1 (reference to the first object in the RData file).
 
-load_get <- function(f, index = 1){
+load_from_rdata <- function(f, index = 1){
   env <- new.env()
   nm <- load(f, env)[index]
   env[[nm]]
