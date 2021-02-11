@@ -1,12 +1,10 @@
-## List of small functions
-### - fersource
-#### Description
-Source functions from any of my repositories.
+### Small functions to make your life easier
+
 Copy and run this at the begining of your code:<br />
-
-###### source('https://raw.githubusercontent.com/FerAguate/SmallRFunctions/master/fersource.R')
-
+```r
+source('https://raw.githubusercontent.com/FerAguate/SmallRFunctions/master/aguate_source.R')
+```
 #### Usage
-fersource(myfunction)
+aguatesource(myfunction)
 #### Arguments
 myfunction = character or string of characters with function names. If myfunction == 'all', all functions will be sourced.
