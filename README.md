@@ -11,4 +11,4 @@ aguatesource(myfunction)
 ```
 
 The argument of this function is: 
-myfunction = character or string of characters with function names. If myfunction == 'all', all functions will be sourced.
+myfunction = character or string of characters with function names. If myfunction == 'all', all functions in the repository will be loaded.
