@@ -13,6 +13,7 @@ aguatesource <- function(myfunction){
     source_env <- roxygen2::env_file(sourcefile)
     rd_blocks <- roxygen2::parse_file(sourcefile, source_env)
     help_topics <- roxygen2::roclet_process(roxygen2::rd_roclet(), rd_blocks, source_env, dirname(sourcefile))
+    rd_code = lapply(help_topics, format)
     topic <- names(rd_code)[1L]
     help_text <- rd_code[[topic]]
     rd <- tools::parse_Rd(textConnection(help_text))
