@@ -18,7 +18,7 @@ for(fun in myfunction){
   rd <- tools::parse_Rd(textConnection(help_text))
   tools::Rd2HTML(rd, out = paste0(fun, '.html'))
   viewer <- getOption('viewer')
-  cat(paste0('To open help, use function viewer(',paste0(fun, '.html'), ')'))
+  cat(paste0('To open help, use function viewer(', paste0('"', fun, '.html', '"'), ')'))
   eval(parse(text = text_function), envir = globalenv())
 }
 }
