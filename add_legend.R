@@ -10,11 +10,12 @@
 #' @param legline line length proportion for line-type labels.
 #' @param legcex legend size
 #' @author Fernando Aguate
-#' @example plot(1:10, 1:10, cex = 0)
-#' @example points(1:10, 1:10 - 1, pch = 3)
-#' @example points(1:10, 1:10 + 1, pch = 2)
-#' @example abline(0, 1, col = 2)
-#' @example add_legend(legylim = c(2, 4), legxlim = c(8, 10))
+#' @examples
+#' plot(1:10, 1:10, cex = 0)
+#' points(1:10, 1:10 - 1, pch = 3)
+#' points(1:10, 1:10 + 1, pch = 2)
+#' abline(0, 1, col = 2)
+#' add_legend(legylim = c(2, 4), legxlim = c(8, 10))
 
 add_legend <- function(legylim, legxlim,
                        leglab = c('Symbol:', 'min', 'mean', 'max'),
