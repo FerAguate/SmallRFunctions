@@ -1,4 +1,4 @@
-aguate_source <- function(myfunction){
+aguatesource <- function(myfunction){
   eval(parse(text = RCurl::getURL('https://raw.githubusercontent.com/FerAguate/SmallRFunctions/master/code_urls.R', ssl.verifypeer = FALSE)))
   functions <- gsub('.R', '', sapply(strsplit(code_urls, '/master/'), function(x) x[2]))
   if(myfunction[1] == 'all') myfunction <- functions
