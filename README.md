@@ -2,7 +2,7 @@
 
 Copy and run this at the begining of your code:<br />
 ```r
-source('https://raw.githubusercontent.com/FerAguate/SmallRFunctions/master/aguate_source.R')
+source('https://raw.githubusercontent.com/FerAguate/SmallRFunctions/master/aguatesource.R')
 ```
 Use this function to source any (or all) small functions.
 
