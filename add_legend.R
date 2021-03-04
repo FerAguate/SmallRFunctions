@@ -16,7 +16,7 @@
 #' points(1:10, 1:10 - 1, pch = 3)
 #' points(1:10, 1:10 + 1, pch = 2)
 #' abline(0, 1, col = 2)
-#' add_legend(legylim = c(2, 4), legxlim = c(8, 10))
+#' add_legend(legylim = c(2, 4), legxlim = c(8, 10), legtyp = c('t','s','l','s'), legpch = c(1, 3, 1, 2), legcol = c(1,1,2,1))
 
 add_legend <- function(legylim = c(0, 1), legxlim = c(0, 1),
                        leglab = c('Symbol:', 'min', 'mean', 'max'),
