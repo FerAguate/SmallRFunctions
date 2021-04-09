@@ -6,16 +6,17 @@
 #' @param QTLs character vector with QTL rs IDs.
 #' @param grid boolean, true will plot a grid; false by default.
 #' @param cex.text text size, by default = 0.7
+#' @param title (optional) plot title
 #' @author Fernando Aguate
 
-myheatLD <- function(LDmat, Xpos, Dmat, QTLs, grid = FALSE, cex.text = .7) {
+myheatLD <- function(LDmat, Xpos, Dmat, QTLs, grid = FALSE, cex.text = .7, title = '') {
   if(nrow(LDmat) != ncol(LDmat)) stop('LDmat must be a square matrix')
   if(nrow(LDmat) != length(Xpos)) stop('Xpos must be a vector of the same length as ncol of LDmat')
   if(nrow(LDmat) < 5) stop('LDmat must have more than 5 SNPs to plot')
   limitX <- nrow(LDmat) + 1 + (ncol(Dmat)*2)
   limitY <- nrow(LDmat)
   plot(1:limitX, c(1:limitY, rep(limitY + 2, limitX-limitY)), type='n',axes=FALSE,ann=FALSE)
-  title(main = '', xlab='Physical length (kbp)', ylab='')
+  title(main = title, xlab='Physical length (kbp)', ylab='')
   # Color Scale
   colscale <- cut(LDmat, seq(0,1,0.01))
   colkey <- topo.colors(100)
