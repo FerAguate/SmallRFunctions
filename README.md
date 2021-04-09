@@ -19,7 +19,7 @@ myfunction = character or string of characters with function names. If myfunctio
 ```r
 create_color_vector() # Creates a vector of colors
 load_from_rdata() # Loads one object from rdata extensions
-mybiplot() # biplot to compare between two groups
+mybiplot() # Biplot to compare between two groups
 grow_tree() # Creates a tree with orthogonal branches based on principal components
 add_legend() # Adds legend to a regular plot
 myheatLD() # Plots a LD heatmap
