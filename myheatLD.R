@@ -1,3 +1,12 @@
+#' @title Heatmap of LD blocks
+#' @description Creates a heatmap of LD blocks. 
+#' @param LDmat correlation squared matrix. cor(X)^2
+#' @param Xpos vector with base pair positions matching colnames in LDmat
+#' @param Dmat discovery (TRUE or FALSE) matrix or data frame. nrow(Dmat) must be equal to ncol(LDmat). This is to compare results against different tests (in columns).
+#' @param QTLs character vector with QTL rs IDs.
+#' @param grid boolean, true will plot a grid.
+#' @author Fernando Aguate
+
 myheatLD <- function(LDmat, Xpos, Dmat, QTLs, grid = FALSE) {
   if(nrow(LDmat) != ncol(LDmat)) stop('LDmat must be a square matrix')
   if(nrow(LDmat) != length(Xpos)) stop('Xpos must be a vector of the same length as ncol of LDmat')
