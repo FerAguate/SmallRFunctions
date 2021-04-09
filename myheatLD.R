@@ -4,10 +4,11 @@
 #' @param Xpos vector with base pair positions matching colnames in LDmat
 #' @param Dmat discovery (TRUE or FALSE) matrix or data frame. nrow(Dmat) must be equal to ncol(LDmat). This is to compare results against different tests (in columns).
 #' @param QTLs character vector with QTL rs IDs.
-#' @param grid boolean, true will plot a grid.
+#' @param grid boolean, true will plot a grid; false by default.
+#' @param cex.text text size, by default = 0.7
 #' @author Fernando Aguate
 
-myheatLD <- function(LDmat, Xpos, Dmat, QTLs, grid = FALSE) {
+myheatLD <- function(LDmat, Xpos, Dmat, QTLs, grid = FALSE, cex.text = .7) {
   if(nrow(LDmat) != ncol(LDmat)) stop('LDmat must be a square matrix')
   if(nrow(LDmat) != length(Xpos)) stop('Xpos must be a vector of the same length as ncol of LDmat')
   if(nrow(LDmat) < 5) stop('LDmat must have more than 5 SNPs to plot')
@@ -39,24 +40,24 @@ myheatLD <- function(LDmat, Xpos, Dmat, QTLs, grid = FALSE) {
   colorkey_xpos <- seq(nrow(LDmat) - 5, nrow(LDmat), length.out = 101)
   colorkey_ypos <- 2
   for (i in 1:100)
-    polygon(rep(c(colorkey_xpos[i],colorkey_xpos[i+1]), each =2), 
+    polygon(rep(c(colorkey_xpos[i],colorkey_xpos[i+1]), each = 2), 
             rep(colorkey_ypos, 4) + c(0,1,1,0), col = colkey[i], border = F)
-  text(min(colorkey_xpos), colorkey_ypos - 1, '0', cex = .8)
-  text(max(colorkey_xpos), colorkey_ypos - 1, '1', cex = .8)
-  text(mean(colorkey_xpos), colorkey_ypos + 2, expression('R'^2 ~ 'Color key:'), cex = .8)
+  text(min(colorkey_xpos), colorkey_ypos - 1, '0', cex = cex.text)
+  text(max(colorkey_xpos), colorkey_ypos - 1, '1', cex = cex.text)
+  text(mean(colorkey_xpos), colorkey_ypos + 2, expression('R'^2 ~ 'Color key:'), cex = cex.text)
   # Add QTLs
   for (i in QTLs) {
     cQTL <- colnames(LDmat) %in% i
     if(!any(cQTL)) stop('The QTL is not in the colnames of LDmat')
     wQTL <- which(cQTL)-1
     polygon(wQTL + c(0,0,1,1), wQTL + c(0,1,1,0), col = 'black', border = F)
-    text(wQTL+.5, wQTL+.5, '-> QTL', pos = 4, cex = .8)
+    text(wQTL+.5, wQTL+.5, '-> QTL', pos = 4, cex = cex.text)
     lines(rep(wQTL+.5,2), c(0,limitY), col = 'black')
   }
   # Add discoveries
   for (j in 1:ncol(Dmat)){
     dis_xpos <- nrow(LDmat)+(j*2)
-    text(dis_xpos, limitY + 1, colnames(Dmat)[j], cex = .8, srt = 90)
+    text(dis_xpos, limitY + 1, colnames(Dmat)[j], cex = cex.text, srt = 90)
     for (i in which(Dmat[,j])) {
       dcol <- ifelse(i %in% which(colnames(LDmat) %in% QTLs), 1, 2) # color for true and false discoveries
       polygon(dis_xpos + c(-.5,-.5,.5,.5), i + c(0,-1,-1,0), col = dcol, border = F)
@@ -74,5 +75,5 @@ myheatLD <- function(LDmat, Xpos, Dmat, QTLs, grid = FALSE) {
     xat[i-1] <- mean(xaxis[c(i-1,i)])
     xlab[i-1] <- round(abs(kbpos[i] - kbpos[i-1]), 1)
   }
-  axis(1, xat-.5, labels = xlab, cex.axis = .8, tick = F)
+  axis(1, xat-.5, labels = xlab, cex.axis = cex.text, tick = F)
 }
