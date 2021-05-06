@@ -2,18 +2,28 @@
 #' @description Creates a heatmap of LD blocks. 
 #' @param LDmat correlation squared matrix. cor(X)^2
 #' @param Xpos vector with base pair positions matching colnames in LDmat
-#' @param Dmat discovery (TRUE or FALSE) matrix or data frame. nrow(Dmat) must be equal to ncol(LDmat). This is to compare results against different tests (in columns).
+#' @param Dmat discovery (TRUE or FALSE) matrix or data frame (optional). nrow(Dmat) must be equal to ncol(LDmat). This is to compare results against different tests (in columns).
+#' @param Inter vector with two SNPs used as intervals (optional). Highlighted interval of SNPs.
 #' @param QTLs character vector with QTL rs IDs.
 #' @param grid boolean, true will plot a grid; false by default.
 #' @param cex.text text size, by default = 0.7
 #' @param title (optional) plot title
 #' @author Fernando Aguate
 
-myheatLD <- function(LDmat, Xpos, Dmat, QTLs, grid = FALSE, cex.text = .7, title = '') {
+myheatLD <- function(LDmat, Xpos, Dmat = NULL, Inter = NULL, QTLs, grid = FALSE, cex.text = .7, title = '') {
   if(nrow(LDmat) != ncol(LDmat)) stop('LDmat must be a square matrix')
   if(nrow(LDmat) != length(Xpos)) stop('Xpos must be a vector of the same length as ncol of LDmat')
   if(nrow(LDmat) < 5) stop('LDmat must have more than 5 SNPs to plot')
-  limitX <- nrow(LDmat) + 1 + (ncol(Dmat)*2)
+  if(!is.null(Inter)) {
+    if(length(Inter) != 2) stop('Inter must be a string with SNP IDs and of length 2')
+    lDmat <- 0
+  }
+  
+  if(!is.null(Dmat)) {
+    lDmat <- ncol(Dmat)
+  }
+  
+  limitX <- nrow(LDmat) + 1 + (lDmat*2)
   limitY <- nrow(LDmat)
   plot(1:limitX, c(1:limitY, rep(limitY + 2, limitX-limitY)), type='n',axes=FALSE,ann=FALSE)
   title(main = title, xlab='Physical length (kbp)', ylab='')
@@ -56,6 +66,8 @@ myheatLD <- function(LDmat, Xpos, Dmat, QTLs, grid = FALSE, cex.text = .7, title
     lines(rep(wQTL+.5,2), c(0,limitY), col = 'black')
   }
   # Add discoveries
+  
+  if(!is.null(Dmat)) {
   for (j in 1:ncol(Dmat)){
     dis_xpos <- nrow(LDmat)+(j*2)
     text(dis_xpos, limitY + 1, colnames(Dmat)[j], cex = cex.text, srt = 90)
@@ -65,7 +77,17 @@ myheatLD <- function(LDmat, Xpos, Dmat, QTLs, grid = FALSE, cex.text = .7, title
       if(!i %in% which(colnames(LDmat) %in% QTLs)) lines(c(0, limitX), rep(i-.5, 2), col = dcol)
     }
   }
-  
+  }
+  if(!is.null(Inter)) {
+    for (i in Inter) {
+      cQTL <- colnames(LDmat) %in% i
+      if(!any(cQTL)) stop('The interval SNPs are not in the colnames of LDmat')
+      wQTL <- which(cQTL)-1
+      polygon(wQTL + c(0,0,1,1), wQTL + c(0,1,1,0), col = 'black', border = F)
+      text(wQTL+.5, wQTL+.5, '-> QTL', pos = 4, cex = cex.text)
+      lines(rep(wQTL+.5,2), c(0,limitY), col = 'black')
+    }
+  }
   # X axis: physical distance (every 5 SNPs or so)
   xaxis <- c(1, which(1:ncol(LDmat) %% 5 == 0))
   kbpos <- Xpos[xaxis] / 1000
